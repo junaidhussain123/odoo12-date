@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="detail_sale_wizard_report_abc"
+                model="excel.wizard"
+                string="Daily Report"
+                report_type="xlsx"
+                name="sale_excel_report.detail_xlsx_template"
+                file="Daily Report"
+        />
+
+        <record id="detail_sale_wizard_view_xyz" model="ir.ui.view">
+            <field name="name">detail_wizard_view</field>
+            <field name="model">excel.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="date_from" />
+                             <field name="date_to" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Sale Excel Report" name="generate_detail_xlsx_rep" type="object"
+                                default_focus="1" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="detail_sale_wizard_action_mnp" model="ir.actions.act_window">
+            <field name="name">Daily Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">excel.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="detail_sale_wizard_view_xyz" />
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="detail_wizard_menu_acd" name="Sales Excel Report"
+                  action="detail_sale_wizard_action_mnp" sequence="1"/>
+
+    </data>
+</odoo>
